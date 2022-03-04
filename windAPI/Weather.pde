@@ -5,11 +5,10 @@ class Weather {
   float windspeed;
 
   Weather() {
-    
   }
 
 
-  void setupData(){
+  void setupData() {
     getData();
     loadData();
     setWeatherData();
@@ -35,6 +34,43 @@ class Weather {
 
   String getDirection() {
     return direction;
+  }
+
+
+  int calcDirection() {
+
+    switch(direction) {
+
+    case "Nord": 
+      return 270;
+
+    case "Syd": 
+      return 90;
+
+    case "Øst": 
+      return 0;
+
+    case "Vest": 
+      return 180;
+
+    case "Sydvest": 
+      return 135;  
+
+    case "Sydøst": 
+      return 45;
+      
+    case "Nordvest": 
+      return 225  ;
+      
+    case "Nordøst": 
+      return 315;
+
+
+    default:
+      return 180;
+      
+    }
+    
   }
 
   float getWindspeed() {
