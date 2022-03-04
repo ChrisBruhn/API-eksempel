@@ -1,4 +1,4 @@
-class ValutaController { //<>// //<>// //<>// //<>//
+class ValutaController { //<>// //<>// //<>// //<>// //<>//
 
   JSONObject rates;
   JSONObject jobj;
@@ -7,17 +7,25 @@ class ValutaController { //<>// //<>// //<>// //<>//
 
 
   ValutaController() {
+    
     // henter datafra fil 
-    loadJsonData();
+    while(!loadJsonData());
   }
 
 
+void updateData(){
+  // hent fra internetserver
+  getJasonData();
+  // gen som json fil
+  saveJsonData();
+}
 
   void getJasonData() {
     // har kun 250 pr måned så jeg bruger gemte data
-    // String[] json = loadStrings("http://data.fixer.io/api/latest?access_key=de0b27c2424c52cd42c240e790573903&format=1");
+    //String[] json = loadStrings("http://data.fixer.io/api/latest?access_key=de0b27c2424c52cd42c240e790573903&format=1");
     this.json = loadStrings("http://data.fixer.io/api/latest?access_key=de0b27c2424c52cd42c240e790573903&format=1");
     //this.jobj = parseJSONObject(this.json);
+
   }
 
   void saveJsonData() {
@@ -25,12 +33,22 @@ class ValutaController { //<>// //<>// //<>// //<>//
     saveStrings ("data.json", this.json);
   }
 
-  void loadJsonData() {
+  boolean loadJsonData() {
     // har kun 250 pr måned så jeg bruger gemte data
     // indlæs data igen, denne gang som objekt
 
+    // hvis filen ikke findes så henter jeg nye data fra nettet
+    try{
     this.jobj = loadJSONObject("data.json");
     this.rates = jobj.getJSONObject("rates");
+    return true;
+    }
+    catch (Exception e) {
+      updateData();
+      return false;
+    
+    }
+
 
     //hvis jeg hellere vil have de som string
     //this.json = loadStrings("data.json");
