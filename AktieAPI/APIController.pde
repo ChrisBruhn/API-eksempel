@@ -182,3 +182,36 @@ import java.util.Comparator;
            return b1.date.compareTo(b2.date);     
     }
 }
+
+// https://www.w3schools.blog/string-to-date-java
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+class StringToDateTime {
+
+  Date date;
+  StringToDateTime() {}
+
+  void StringToDate(String date_time) {
+    //String date_time = "11/27/2020 05:35:00";
+    //SimpleDateFormat dateParser = new SimpleDateFormat("yy-MM-dd HH:mm:ss");
+    SimpleDateFormat dateParser = new SimpleDateFormat("yy-MM-dd");
+    {
+      try {
+        date = dateParser.parse(date_time);
+      } 
+      catch (ParseException e) {
+        e.printStackTrace();
+      }
+    }
+  }  
+
+String formatMyDate(Date date) {
+  SimpleDateFormat DateFor = new SimpleDateFormat("dd-MM-yyyy");
+  String stringDate= DateFor.format(date);
+  //System.out.println(stringDate);
+  return stringDate;
+}
+
+}
