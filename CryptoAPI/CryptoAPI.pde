@@ -2,31 +2,35 @@ APIController ac;
 
 
 void setup() {
-  size(1800, 1200);
-  
+  size(600, 400);
   // data controller
-  ac = new APIController();
-  ac.setStockCode("GOOGL");
-     
+  ac = new APIController(); // opret en instans af klassen
+  ac.setStockCode("BTC"); // Bestemmer hvilken kurs som skal hentes
+  ac.initAPIController(); 
   fill(0);
-  
 }
 
 void draw() {
   background(225);
-  
-  
   // udskriv aktie koden til skærm som overskrift
   textSize(24);
   text(ac.getStockCode(),width/2,20);
   textSize(16);
-  // udskriv alle
+  // udskriv fra objekt
   ac.printAll();
   
-  // find kurs fra en bestemt dato
-  
-  // bed ac om at finde den 
-  Bubble b = ac.getBubbleByDate("2022-03-11");
-  // udskriv
-  text(b.getDate().toString()+" "+b.getFromName()+" searched and found on date only", 50, height-20 );
+  // udskriv herfra 
+  udskriv();
+}
+
+void udskriv(){
+  println("stockCode "+ac.stockCode);
+  println("currencyCode "+ac.currencyCode);
+  println("from "+ac.from);
+  println("fromName "+ac.fromName);
+  println("toCurrency "+ac.toCurrency);
+  println("toCurrencyName "+ac.toCurrencyName);
+  println("exchangeRate "+ac.exchangeRate);
+  println("fromDate "+ac.fromDate);
+
 }

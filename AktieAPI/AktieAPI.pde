@@ -7,6 +7,7 @@ void setup() {
   // data controller
   ac = new APIController();
   ac.setStockCode("GOOGL");
+  ac.initAPIController();
      
   fill(0);
   

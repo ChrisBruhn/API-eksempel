@@ -10,7 +10,7 @@ class APIController {
   Bubble[] bubbles;
 
 
-  APIController() {
+  void initAPIController() {
     while (!loadJsonData()); // henter datafra fil 
     bubbles = loadData(); // når data er hentet skal de indlæses
   }
@@ -115,7 +115,7 @@ class APIController {
 
   void setStockCode(String s) {
     this.stockCode = s; // set ny aktie kode
-    updateData();   // opdater data fra nettet
+    
   }
 
   String getStockCode() {
